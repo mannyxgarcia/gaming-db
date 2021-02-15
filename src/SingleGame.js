@@ -36,9 +36,18 @@ const SingleGame = ({gameDetails}) => {
                 }
               })}
             </div>
+            <div className="platform">
+              {gameDetails.parent_platforms.map(platform => {
+                if(platform.platform.name === 'Nintendo'){
+                  return (
+                    <i class="fas fa-gamepad"></i>
+                  )
+                }
+              })}
+            </div>
           </div>
           <div>
-            ***
+            {`${gameDetails.rating}/5`}
           </div>
         </div>
         <div className="card-subtitle">
