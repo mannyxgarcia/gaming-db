@@ -175,11 +175,11 @@ body {
 
 .modal-title a {
   text-decoration: none;
-  color: inherit;
+  color: #d53638;
 }
 
 .modal-title a:hover {
-  color: #d53638;
+  color: #ac2222;
   transition: 0.5s;
 }
 
