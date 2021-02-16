@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import SingleGame from './SingleGame'
+import utils from './utils'
 
 const SingleCategory = ({id, games, name}) => {
   const [errors, setErrors] = useState(false)
   const [gameDetails, setGameDetails] = useState([])
   
-  useEffect(() => getGameDetails(), [])
+  useEffect(() => getGameDetails(new Date(), name), [])
   
-  const getGameDetails = () => {
-      fetch(`https://api.rawg.io/api/games?dates=2020-11-16%2C2021-02-16&genres=${name}&ordering=-rating&parent_platforms=1,2,3&page_size=5`)
+  const getGameDetails = async (date, name) => {
+    const dates = await utils.getDates(date)
+      fetch(`https://api.rawg.io/api/games?dates=${dates}&genres=${name}&ordering=-rating&parent_platforms=1,2,3&page_size=5`)
       .then(res => res.json())
       .then(res => setGameDetails(res.results))
       .catch(() => setErrors(true))

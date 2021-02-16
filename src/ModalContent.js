@@ -17,7 +17,6 @@ const ModalContent = ({ game, onClose, description }) => {
   
   return (
     <>
-    {/* {console.log('---GAME DESCRIPTION', gameDescription)} */}
       <div className="modal">
         <img src={game.background_image} alt={''} className="card-image"/>
         <div className='modal-close'>

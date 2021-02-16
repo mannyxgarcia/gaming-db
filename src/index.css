@@ -63,6 +63,7 @@ body {
 .category-title {
   font-size: 2rem;
   padding-bottom: 10px;
+  text-transform: capitalize;
 }
 
 .category-games {

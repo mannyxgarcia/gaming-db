@@ -8,7 +8,6 @@ const SingleGame = ({gameDetails, id}) => {
 
   useEffect(() => {
     fetchGameData(id)
-    // await setGameDescription(data.description)
   }, [])
   
   const fetchGameData = (id) => {
