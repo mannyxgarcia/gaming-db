@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Modal from './Modal'
+import ModalContent from './ModalContent'
 
-const SingleGame = ({gameDetails}) => {
+const SingleGame = ({gameDetails, id}) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [data, setData] = useState('')
+
+  useEffect(() => {
+    fetchGameData(id)
+    // await setGameDescription(data.description)
+  }, [])
+  
+  const fetchGameData = (id) => {
+    fetch(`https://api.rawg.io/api/games/${id}`)
+      .then(res => res.json())
+      .then(res => setData(res))
+  }
+  
   return (
     <>
-    {console.log('game details', gameDetails)}
-    <div className="card">
+    <div className="card" onClick={() => setIsOpen(true)}>
       <img src={gameDetails.background_image} alt={''} className="card-image"/>
       <div className="card-details">
         <div className="card-title">
@@ -13,7 +28,7 @@ const SingleGame = ({gameDetails}) => {
               {gameDetails.parent_platforms.map(platform => {
                 if(platform.platform.name === 'PC'){
                   return (
-                    <i class="fab fa-windows"></i>
+                    <i className="fab fa-windows"></i>
                   )
                 }
               })}
@@ -22,7 +37,7 @@ const SingleGame = ({gameDetails}) => {
               {gameDetails.parent_platforms.map(platform => {
                 if(platform.platform.name === 'Xbox'){
                   return (
-                    <i class="fab fa-xbox"></i>
+                    <i className="fab fa-xbox"></i>
                   )
                 }
               })}
@@ -31,7 +46,7 @@ const SingleGame = ({gameDetails}) => {
               {gameDetails.parent_platforms.map(platform => {
                 if(platform.platform.name === 'PlayStation'){
                   return (
-                    <i class="fab fa-playstation"></i>
+                    <i className="fab fa-playstation"></i>
                   )
                 }
               })}
@@ -40,7 +55,7 @@ const SingleGame = ({gameDetails}) => {
               {gameDetails.parent_platforms.map(platform => {
                 if(platform.platform.name === 'Nintendo'){
                   return (
-                    <i class="fas fa-gamepad"></i>
+                    <i className="fas fa-gamepad"></i>
                   )
                 }
               })}
@@ -55,6 +70,9 @@ const SingleGame = ({gameDetails}) => {
         </div>
       </div>
     </div>
+    <Modal key={id} open={isOpen} onClose={() => setIsOpen(false)}>
+      <ModalContent key={id} game={gameDetails} onClose={() => setIsOpen(false)} description={data.description_raw} />
+    </Modal>
     </>
   )
 }

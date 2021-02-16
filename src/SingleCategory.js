@@ -5,27 +5,17 @@ const SingleCategory = ({id, games, name}) => {
   const [errors, setErrors] = useState(false)
   const [gameDetails, setGameDetails] = useState([])
   
-  useEffect(() => {
-    getGameDetails()
-  }, [])
+  useEffect(() => getGameDetails(), [])
   
   const getGameDetails = () => {
-    console.log('-----GAMES', games)
-    games.forEach(game => {
-      fetch(`https://api.rawg.io/api/games/${game.id}`)
+      fetch(`https://api.rawg.io/api/games?dates=2020-11-16%2C2021-02-16&genres=${name}&ordering=-rating&parent_platforms=1,2,3&page_size=5`)
       .then(res => res.json())
-      .then(res => setGameDetails(prevGameDetails => {
-        return [
-          ...prevGameDetails, res
-        ]
-      }))
+      .then(res => setGameDetails(res.results))
       .catch(() => setErrors(true))
-    })
   }
   
   return (
     <>
-    {console.log('---Details', name, gameDetails)}
       <div className="category-container">
         <div className="category-title">
           {name}
@@ -34,7 +24,7 @@ const SingleCategory = ({id, games, name}) => {
           {gameDetails.map(game => {
             return (
               <div className="single-game">
-                <SingleGame key={game.id} gameDetails={game}/>
+                <SingleGame key={game.id} id={game.id} gameDetails={game}/>
               </div>
             )
           })}

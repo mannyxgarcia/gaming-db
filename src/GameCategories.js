@@ -34,10 +34,9 @@ const GameCategories = () => {
   
   return (
     <>
-    {console.log(data)}
     {data.map(category => {
       return (
-      <SingleCategory key={category.id} id={category.id} games={category.games} name={category.name} />
+      <SingleCategory key={category.id} id={category.id} games={category.games} name={category.slug} />
       )
     })}
     
