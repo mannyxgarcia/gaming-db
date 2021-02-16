@@ -173,6 +173,16 @@ body {
   cursor: pointer;
 }
 
+.modal-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.modal-title a:hover {
+  color: #d53638;
+  transition: 0.5s;
+}
+
 .modal-details {
   display: flex;
   flex-direction: column;

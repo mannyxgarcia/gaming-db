@@ -18,6 +18,7 @@ const SingleGame = ({id, gameDetails}) => {
   
   return (
     <>
+    {console.log(data)}
     <div className="card" onClick={() => setIsOpen(true)}>
       <img src={gameDetails.background_image} alt={''} className="card-image"/>
       <div className="card-details">
@@ -70,7 +71,7 @@ const SingleGame = ({id, gameDetails}) => {
       </div>
     </div>
     <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-      <ModalContent game={gameDetails} onClose={() => setIsOpen(false)} description={data.description_raw} />
+      <ModalContent game={data} onClose={() => setIsOpen(false)} description={data.description_raw} />
     </Modal>
     </>
   )

@@ -67,8 +67,8 @@ const ModalContent = ({ game, onClose, description }) => {
             </div>
           </div>
           <div className="card-subtitle">
-            <div>
-              {game.name}
+            <div className='modal-title'>
+            <a href={`${game.website}`}>{game.name} <i className="fas fa-external-link-alt fa-xs"></i></a>
             </div>
             <div className="modal-details">
               <div className="modal-description">

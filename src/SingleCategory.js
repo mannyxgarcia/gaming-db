@@ -24,7 +24,6 @@ const SingleCategory = ({categoryName}) => {
         </div>
         <div className="category-games">
           {gameDetails.map(game => {
-            console.log(game.id)
             return (
               <div className="single-game">
                 <SingleGame key={game.id} id={game.id} gameDetails={game}/>
