@@ -50,7 +50,7 @@ body {
 }
 
 .categories {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   align-self: flex-start;
 }
 
@@ -191,4 +191,8 @@ body {
 
 .modal-description {
   padding-top: 15px;
+}
+
+.container-carousel {
+  width: 90vw;
 }
