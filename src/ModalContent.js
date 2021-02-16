@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import moment from 'moment'
 
 const ModalContent = ({ game, onClose, description }) => {
   const [shortDescription, setShortDescription] = useState(null)
@@ -72,7 +73,7 @@ const ModalContent = ({ game, onClose, description }) => {
             </div>
             <div className="modal-details">
               <div className="modal-description">
-              release date: {game.released}
+              release date: {moment(game.released, "YYYY-MM-DD").format("MMMM Do YYYY")}
               </div>
               <div className="modal-description">
                 {shortDescription}
