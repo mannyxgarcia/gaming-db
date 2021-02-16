@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from './Modal'
 import ModalContent from './ModalContent'
 
-const SingleGame = ({gameDetails, id}) => {
+const SingleGame = ({id, gameDetails}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [data, setData] = useState('')
 
@@ -69,8 +69,8 @@ const SingleGame = ({gameDetails, id}) => {
         </div>
       </div>
     </div>
-    <Modal key={id} open={isOpen} onClose={() => setIsOpen(false)}>
-      <ModalContent key={id} game={gameDetails} onClose={() => setIsOpen(false)} description={data.description_raw} />
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+      <ModalContent game={gameDetails} onClose={() => setIsOpen(false)} description={data.description_raw} />
     </Modal>
     </>
   )

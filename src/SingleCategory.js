@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react'
 import SingleGame from './SingleGame'
 import utils from './utils'
 
-const SingleCategory = ({id, games, name}) => {
+const SingleCategory = ({categoryName}) => {
   const [errors, setErrors] = useState(false)
   const [gameDetails, setGameDetails] = useState([])
   
-  useEffect(() => getGameDetails(new Date(), name), [])
+  useEffect(() => getGameDetails(categoryName, new Date()), [])
   
-  const getGameDetails = async (date, name) => {
-    const dates = await utils.getDates(date)
-      fetch(`https://api.rawg.io/api/games?dates=${dates}&genres=${name}&ordering=-rating&parent_platforms=1,2,3&page_size=5`)
+  const getGameDetails = (categoryName, date) => {
+    const dates = utils.getDates(date)
+      fetch(`https://api.rawg.io/api/games?dates=${dates}&genres=${categoryName}&ordering=-rating&parent_platforms=1,2,3&page_size=5`)
       .then(res => res.json())
       .then(res => setGameDetails(res.results))
       .catch(() => setErrors(true))
@@ -20,10 +20,11 @@ const SingleCategory = ({id, games, name}) => {
     <>
       <div className="category-container">
         <div className="category-title">
-          {name}
+          {categoryName}
         </div>
         <div className="category-games">
           {gameDetails.map(game => {
+            console.log(game.id)
             return (
               <div className="single-game">
                 <SingleGame key={game.id} id={game.id} gameDetails={game}/>

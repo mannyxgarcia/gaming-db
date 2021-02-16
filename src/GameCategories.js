@@ -36,7 +36,7 @@ const GameCategories = () => {
     <>
     {data.map(category => {
       return (
-      <SingleCategory key={category.id} id={category.id} games={category.games} name={category.slug} />
+      <SingleCategory key={category.id} categoryName={category.slug} />
       )
     })}
     
