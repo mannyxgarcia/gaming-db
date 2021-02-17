@@ -18,7 +18,6 @@ const SingleGame = ({id, gameDetails}) => {
   
   return (
     <>
-    {console.log(data)}
     <div className="card" onClick={() => setIsOpen(true)}>
       <img src={gameDetails.background_image} alt={''} className="card-image"/>
       <div className="card-details">

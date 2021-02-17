@@ -4,22 +4,14 @@ import SingleCategory from './SingleCategory'
 const GameCategories = () => {
   const [data, setData] = useState([])
   const [hasError, setErrors] = useState(false)
-  // const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([])
   
-  useEffect(() => {
-    fetchCategories()
-  }, [])
-  
-  // useEffect(() => {
-  //   filterCategories(data)
-  // }, [categories])
-  
-  const fetchCategories = () => {
-    fetch('https://api.rawg.io/api/genres')
-      .then(res => res.json())
-      .then(res => setData(res.results))
-      .catch(() => setErrors(true))
-  }
+  // const fetchCategories = () => {
+  //   fetch('https://api.rawg.io/api/genres')
+  //     .then(res => res.json())
+  //     .then(res => setData(res.results))
+  //     .catch(() => setErrors(true))
+  // }
   
   // const filterCategories = (data) => {
   //   let results = []
@@ -32,9 +24,30 @@ const GameCategories = () => {
   //   setCategories(results)
   // }
   
+  useEffect(() => {
+    fetch('https://api.rawg.io/api/genres')
+      .then(res => res.json())
+      .then(res => setData(res.results))
+      .catch(() => setErrors(true))
+  }, [setData])
+  
+  useEffect(() => {
+    if(!data.length) return
+    let results = []
+    results.push(data[0])
+    results.push(data[1])
+    results.push(data[3])
+    results.push(data[5])
+    results.push(data[7])
+    results.push(data[13])
+    results.push(data[14])
+    setCategories(results)
+  }, [data, setCategories])
+  
+  
   return (
     <>
-    {data.map(category => {
+    {categories.map(category => {
       return (
       <SingleCategory key={category.id} categoryName={category.slug} />
       )
