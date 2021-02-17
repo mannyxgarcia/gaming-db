@@ -12,7 +12,7 @@ const SingleCategory = ({categoryName}) => {
   
   const getGameDetails = (categoryName, date) => {
     const dates = utils.getDates(date)
-      fetch(`https://api.rawg.io/api/games?dates=${dates}&genres=${categoryName}&ordering=-rating&parent_platforms=1,2,3&page_size=10`)
+      fetch(`https://api.rawg.io/api/games?dates=${dates}&genres=${categoryName}&ordering=-rating&parent_platforms=1,2,3&page_size=15`)
       .then(res => res.json())
       .then(res => setGameDetails(res.results))
       .catch(() => setErrors(true))
@@ -27,9 +27,9 @@ const SingleCategory = ({categoryName}) => {
         <div className="container-carousel">
         <CarouselProvider
           naturalSlideWidth={10}
-          naturalSlideHeight={5}
-          totalSlides={5}
-          visibleSlides={2}>
+          naturalSlideHeight={10}
+          totalSlides={gameDetails.length}
+          visibleSlides={4}>
           <Slider>
             <div className="category-games">
               {gameDetails.map((game, index) => {
